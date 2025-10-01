@@ -1,38 +1,49 @@
-//for ( let a = 4; a < 10; a++){console.log("This")}
-//ROCK PAPER SCISSORS
-const choices = ["rock","paper","scissors"];
+// STEP 1: Setup references
 const playerDisplay = document.getElementById("playerDisplay");
 const computerDisplay = document.getElementById("computerDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
 
-function playGame(playerChoice){
+const choices = ["✊", "✋", "✌️"];
 
-    const computerChoice = choices[Math.floor(Math.random() * 3)];
-    let result = "";
+// STEP 2: Main function
+function playGame(playerChoice) {
+  const computerChoice = getComputerChoice();
+  const result = getResult(playerChoice, computerChoice);
 
-    if(playerChoice === computerChoice) {
-        result = "IT'S A TIE!";
-    }
-    else {
-        switch(playerChoice) {
-            case "rock":
-           result = (computerChoice === "scissors") ? "YOU WIN!" : "YOU LOSE!"
-           break;
-            case "paper":
-           result = (computerChoice ===  "rock") ? "YOU WIN!" : "YOU LOSE!"
-           break;
-            case "scissors":
-           result = (computerChoice === "paper") ? "YOU WIN!" : "YOU LOSE!"
-           break;
-           
-           
-
-        }
-    }
-
-    playerDisplay.textContent = `PLAYER: ${playerChoice}`;
-    computerDisplay.textContent = `Computer: ${computerChoice}`;
-    resultDisplay.textContent = result;
-
+  updateDisplay(playerChoice, computerChoice, result);
+  animateResult();
 }
+
+// STEP 3: Computer choice generator
+function getComputerChoice() {
+  return choices[Math.floor(Math.random() * choices.length)];
+}
+
+// STEP 4: Compare choices → decide winner
+function getResult(player, computer) {
+  if (player === computer) return "😐 It's a Tie!";
+  if (
+    (player === "✊" && computer === "✌️") ||
+    (player === "✋" && computer === "✊") ||
+    (player === "✌️" && computer === "✋")
+  ) {
+    return "🔥 You Win!";
+  }
+  return "💀 You Lose!";
+}
+
+// STEP 5: Update the UI
+function updateDisplay(player, computer, result) {
+  playerDisplay.textContent = `Player: ${player}`;
+  computerDisplay.textContent = `Computer: ${computer}`;
+  resultDisplay.textContent = result;
+}
+
+// STEP 6: Add a pulse animation to result
+function animateResult() {
+  resultDisplay.style.animation = "none"; // reset
+  void resultDisplay.offsetWidth;         // trick to restart animation
+  resultDisplay.style.animation = "pulse 2s infinite alternate";
+}
+
 
