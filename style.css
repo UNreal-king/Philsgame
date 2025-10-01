@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   margin: 0;
   display: flex;
@@ -7,47 +7,96 @@ body {
   align-items: center;  
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, hsl(200, 100%, 95%), hsl(200, 100%, 85%));
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  overflow: hidden;
+}
+
+/* Floating gradient animation background */
+body::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 180deg,
+    #00f5ff,
+    #0066ff,
+    #ff00ff,
+    #00ff99,
+    #00f5ff
+  );
+  animation: spin 20s linear infinite;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 h1 {
-  font-size: 3.5rem;
-  color: hsl(0, 0%, 20%);
+  font-size: 4rem;
+  color: #ffffff;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+               0 0 40px rgba(0, 150, 255, 0.5);
+  animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .choices {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .choices button {
-  font-size: 7rem;
-  min-width: 160px;
-  margin: 0 10px;
+  font-size: 5rem;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   border: none;
-  background-color: hsl(200, 100%, 50%);
+  background: linear-gradient(145deg, #00c6ff, #0072ff);
   color: white;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6),
+              inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .choices button:hover {
-  background-color: hsl(200, 100%, 65%);
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.9),
+              inset 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 #playerDisplay, 
 #computerDisplay {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 10px 0;
+  text-shadow: 0 0 10px rgba(0,255,255,0.6);
 }
 
 #resultDisplay {
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 30px 0px;
-  color: hsl(0, 0%, 20%);
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255,0,200,0.9),
+               0 0 40px rgba(0,255,255,0.6);
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(1.1); opacity: 1; }
 }
