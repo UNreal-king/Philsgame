@@ -1,1 +1,12 @@
+body {
+  padding-top: 40px; /* pushes everything down */
+}
+
+canvas#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; /* keeps background behind content */
+}
+
 
