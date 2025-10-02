@@ -2,115 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>⚡ Neon RPS ⚡</title>
+  <title>🔥 Neon RPS</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
-      overflow-x: hidden;
-      text-align: center;
-      color: #fff;
-    }
-
-    canvas#particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-    }
-
-    h1 {
-      margin-top: 40px;
-      font-size: 3rem;
-      text-shadow: 0 0 20px #0ff, 0 0 40px #f0f;
-      animation: flicker 2s infinite alternate;
-    }
-    @keyframes flicker {
-      from { opacity: 0.8; text-shadow: 0 0 10px #0ff; }
-      to   { opacity: 1; text-shadow: 0 0 30px #0ff, 0 0 60px #f0f; }
-    }
-
-    .choices {
-      margin: 40px auto;
+      margin: 0;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      gap: 30px;
-    }
-    .choices button {
-      font-size: 4rem;
-      width: 120px; height: 120px;
-      border-radius: 20px;
-      border: none;
-      background: linear-gradient(145deg, #00f5ff, #0072ff);
-      box-shadow: 0 0 20px #0ff, inset 0 0 10px rgba(255,255,255,0.3);
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      perspective: 1000px;
-    }
-    .choices button:hover {
-      transform: scale(1.2) rotateY(15deg);
-      box-shadow: 0 0 40px #f0f, inset 0 0 20px #0ff;
-    }
-
-    #playerDisplay, #computerDisplay {
-      font-size: 1.5rem;
-      margin: 10px;
-      text-shadow: 0 0 15px #0ff;
-    }
-
-    #resultDisplay {
-      font-size: 2.5rem;
-      margin: 20px;
-      text-shadow: 0 0 25px #f0f, 0 0 50px #0ff;
-      animation: glitch 1s infinite;
-    }
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px #f0f, -2px -2px #0ff; }
-      50% { text-shadow: -2px 2px #0ff, 2px -2px #f0f; }
-      100% { text-shadow: 2px -2px #0ff, -2px 2px #f0f; }
-    }
-
-    .scoreboard {
-      margin: 20px;
-      font-size: 1.2rem;
-      text-shadow: 0 0 10px cyan;
-    }
-
-    .reset-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(145deg, #f0f, #0ff);
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
-      font-size: 1rem;
+      overflow: hidden;
+    }
+    h1 { margin-bottom: 20px; }
+    .choices button {
+      font-size: 3rem;
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: none;
       cursor: pointer;
-      box-shadow: 0 0 20px #f0f;
-      transition: 0.3s;
     }
-    .reset-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 40px #0ff;
-    }
-
-    .flash-win { animation: flashGreen 0.5s; }
-    .flash-lose { animation: flashRed 0.5s; }
-    .flash-tie { animation: flashBlue 0.5s; }
-    @keyframes flashGreen { from { background:#002; } to { background:#0f6; } }
-    @keyframes flashRed { from { background:#200; } to { background:#f00; } }
-    @keyframes flashBlue { from { background:#002; } to { background:#00f; } }
+    #resultDisplay { font-size: 2rem; margin-top: 20px; }
+    #scoreboard { margin-top: 10px; }
+    canvas { position: fixed; top:0; left:0; z-index:-1; }
   </style>
 </head>
 <body>
-  <canvas id="particles"></canvas>
-
-  <h1>⚡ Rock • Paper • Scissors ⚡</h1>
-
-  <div class="scoreboard">
-    <span id="playerScore">Player: 0</span> | 
-    <span id="computerScore">Computer: 0</span>
-  </div>
+  <h1>🔥 Neon RPS</h1>
 
   <div class="choices">
     <button onclick="playGame('✊')">✊</button>
@@ -121,9 +43,14 @@
   <div id="playerDisplay">Player: ❓</div>
   <div id="computerDisplay">Computer: ❓</div>
   <div id="resultDisplay">Ready?</div>
+  <div id="scoreboard">
+    <span id="playerScore">Player: 0</span> | 
+    <span id="computerScore">Computer: 0</span>
+  </div>
+  <button onclick="resetGame()">🔄 Reset</button>
 
-  <button class="reset-btn" onclick="resetGame()">🔄 Reset</button>
+  <canvas id="particles"></canvas>
 
-  <script src="index.js"> </script>
+  <script src ="index.js"></script>
 </body>
 </html>
