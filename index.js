@@ -1,81 +1,47 @@
-    const playerDisplay = document.getElementById("playerDisplay");
-    const computerDisplay = document.getElementById("computerDisplay");
-    const resultDisplay = document.getElementById("resultDisplay");
-    const playerScoreEl = document.getElementById("playerScore");
-    const computerScoreEl = document.getElementById("computerScore");
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
+// STEP 1: Setup references
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
 
-    const choices = ["✊","✋","✌️"];
-    let playerScore = 0, computerScore = 0;
-    let particles = [];
+const choices = ["✊", "✋", "✌️"];
 
-    // ✅ Must be global for onclick to work
-    function playGame(playerChoice) {
-      const computerChoice = choices[Math.floor(Math.random()*choices.length)];
-      let result = "";
+// STEP 2: Main function
+function playGame(playerChoice) {
+  const computerChoice = getComputerChoice();
+  const result = getResult(playerChoice, computerChoice);
 
-      if (playerChoice === computerChoice) {
-        result = "😐 Tie!";
-      } else if (
-        (playerChoice==="✊"&&computerChoice==="✌️")||
-        (playerChoice==="✋"&&computerChoice==="✊")||
-        (playerChoice==="✌️"&&computerChoice==="✋")
-      ) {
-        result = "🔥 You Win!";
-        playerScore++;
-        fireworks();
-      } else {
-        result = "💀 You Lose!";
-        computerScore++;
-      }
+  updateDisplay(playerChoice, computerChoice, result);
+  animateResult();
+}
 
-      playerDisplay.textContent = `Player: ${playerChoice}`;
-      computerDisplay.textContent = `Computer: ${computerChoice}`;
-      resultDisplay.textContent = result;
-      playerScoreEl.textContent = `Player: ${playerScore}`;
-      computerScoreEl.textContent = `Computer: ${computerScore}`;
-    }
+// STEP 3: Computer choice generator
+function getComputerChoice() {
+  return choices[Math.floor(Math.random() * choices.length)];
+}
 
-    function resetGame() {
-      playerScore=0; computerScore=0;
-      playerDisplay.textContent="Player: ❓";
-      computerDisplay.textContent="Computer: ❓";
-      resultDisplay.textContent="Ready?";
-      playerScoreEl.textContent="Player: 0";
-      computerScoreEl.textContent="Computer: 0";
-    }
+// STEP 4: Compare choices → decide winner
+function getResult(player, computer) {
+  if (player === computer) return "😐 It's a Tie!";
+  if (
+    (player === "✊" && computer === "✌️") ||
+    (player === "✋" && computer === "✊") ||
+    (player === "✌️" && computer === "✋")
+  ) {
+    return "🔥 You Win!";
+  }
+  return "💀 You Lose!";
+}
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+// STEP 5: Update the UI
+function updateDisplay(player, computer, result) {
+  playerDisplay.textContent = `Player: ${player}`;
+  computerDisplay.textContent = `Computer: ${computer}`;
+  resultDisplay.textContent = result;
+}
 
-    function fireworks(){
-      for(let i=0;i<40;i++){
-        particles.push({
-          x: canvas.width/2,
-          y: canvas.height/2,
-          angle: Math.random()*2*Math.PI,
-          speed: Math.random()*5+2,
-          life: 60
-        });
-      }
-    }
-
-    function loop(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      particles.forEach((p,i)=>{
-        p.x += Math.cos(p.angle)*p.speed;
-        p.y += Math.sin(p.angle)*p.speed;
-        p.life--;
-        ctx.fillStyle="hsl("+(p.life*6)+",100%,50%)";
-        ctx.fillRect(p.x,p.y,4,4);
-        if(p.life<=0) particles.splice(i,1);
-      });
-      requestAnimationFrame(loop);
-    }
-    loop();
-
+// STEP 6: Add a pulse animation to result
+function animateResult() {
+  resultDisplay.style.animation = "none"; // reset
+  void resultDisplay.offsetWidth;         // trick to restart animation
+  resultDisplay.style.animation = "pulse 2s infinite alternate";
+}
