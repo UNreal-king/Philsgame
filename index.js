@@ -521,3 +521,8 @@ function confettiBurst(x,y){ for(let i=0;i<120;i++){ particles.push({ x,y, vx: (
 
 /* ---------- final touches: small intro bursts ---------- */
 setTimeout(()=>{ firework(innerWidth*0.32, innerHeight*0.40, '#ff66aa'); firework(innerWidth*0.68, innerHeight*0.42, '#00ffcc'); }, 600);
+
+document.addEventListener("DOMContentLoaded", () => {
+  https://unreal-king.github.io/Philsgame/
+});
+
