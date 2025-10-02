@@ -118,4 +118,8 @@ footer {
   font-size: 0.9rem;
   text-shadow: 0 0 10px #ff00ff;
 }
+.flash-win { background: radial-gradient(circle, #00ff99, #003322); transition: background 0.5s; }
+.flash-lose { background: radial-gradient(circle, #ff0033, #330000); transition: background 0.5s; }
+.flash-tie { background: radial-gradient(circle, #cccccc, #222222); transition: background 0.5s; }
+
 
