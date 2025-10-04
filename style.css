@@ -94,22 +94,51 @@ h1 {
 }
 
 /* Reset button */
-.reset-btn {
+
+.rainbow-btn {
+  position: relative;
   background: #111;
   color: #fff;
-  border: 2px solid #0ff;
+  border: none;
   padding: 15px 40px;
-  font-size: 18px;
-  border-radius: 10px;
+  font-size: 20px;
+  border-radius: 12px;
   cursor: pointer;
+  overflow: hidden;
   transition: 0.3s ease;
-  box-shadow: 0 0 10px #0ff;
+  z-index: 1;
 }
-.reset-btn:hover {
-  background: #0ff;
-  color: #111;
-  box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff;
+
+/* Rainbow border glow animation */
+.rainbow-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(45deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  filter: blur(5px);
+  border-radius: 14px;
+  animation: rainbow 3s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hover effect */
+.rainbow-btn:hover {
+  color: #000;
+  background: white;
   transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255,255,255,0.6);
 }
 /* Footer */
 footer {
@@ -121,6 +150,7 @@ footer {
 .flash-win { background: radial-gradient(circle, #00ff99, #003322); transition: background 0.5s; }
 .flash-lose { background: radial-gradient(circle, #ff0033, #330000); transition: background 0.5s; }
 .flash-tie { background: radial-gradient(circle, #cccccc, #222222); transition: background 0.5s; }
+
 
 
 
