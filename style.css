@@ -95,7 +95,7 @@ h1 {
 
 /* Reset button */
 
-.rainbow-btn {
+.reset-btn {
   position: relative;
   background: #111;
   color: #fff;
@@ -110,7 +110,7 @@ h1 {
 }
 
 /* Rainbow border glow animation */
-.rainbow-btn::before {
+.reset-btn::before {
   content: "";
   position: absolute;
   top: -2px;
@@ -134,7 +134,7 @@ h1 {
 }
 
 /* Hover effect */
-.rainbow-btn:hover {
+.reset-btn:hover {
   color: #000;
   background: white;
   transform: scale(1.05);
@@ -150,6 +150,7 @@ footer {
 .flash-win { background: radial-gradient(circle, #00ff99, #003322); transition: background 0.5s; }
 .flash-lose { background: radial-gradient(circle, #ff0033, #330000); transition: background 0.5s; }
 .flash-tie { background: radial-gradient(circle, #cccccc, #222222); transition: background 0.5s; }
+
 
 
 
