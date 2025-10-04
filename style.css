@@ -95,22 +95,22 @@ h1 {
 
 /* Reset button */
 .reset-btn {
-  margin-top: 20px;
-  padding: 10px 25px;
-  font-size: 1rem;
-  border-radius: 15px;
-  border: none;
-  background: linear-gradient(145deg, #ff00ff, #0072ff);
-  color: white;
+  background: #111;
+  color: #fff;
+  border: 2px solid #0ff;
+  padding: 15px 40px;
+  font-size: 18px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 0 20px #ff00ff;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px #0ff;
 }
 .reset-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 40px #00ffcc;
+  background: #0ff;
+  color: #111;
+  box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, 0 0 60px #0ff;
+  transform: scale(1.05);
 }
-
 /* Footer */
 footer {
   position: absolute;
@@ -121,5 +121,6 @@ footer {
 .flash-win { background: radial-gradient(circle, #00ff99, #003322); transition: background 0.5s; }
 .flash-lose { background: radial-gradient(circle, #ff0033, #330000); transition: background 0.5s; }
 .flash-tie { background: radial-gradient(circle, #cccccc, #222222); transition: background 0.5s; }
+
 
 
